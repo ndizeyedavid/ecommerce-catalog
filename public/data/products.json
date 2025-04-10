@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "productName": "Nike Air Max",
+        "img": "https://img.freepik.com/premium-photo/pair-comfortable-sport-shoes-sporty-blue-sneakers-shoes-blue-background-shoe-store-shopping-concept-footwear-training-athletic-footgear-running_474717-9840.jpg",
+        "price": 12000,
+        "ratings": 3,
+        "category": ["Shoes", "Fashion", "Nike"]
+    },
+    {
+        "id": 2,
+        "productName": "Pitcairn Islands",
+        "img": "https://t3.ftcdn.net/jpg/05/41/38/96/360_F_541389653_OaqaWUtWEk7A3EkYMtyO1PPnUUr9abJj.jpg",
+        "ratings": 2,
+        "price": 12000,
+        "category": ["Shoes", "Fashion", "Nike"]
+    },
+    {
+        "id": 3,
+        "productName": "dasdasda",
+        "img": "https://static.vecteezy.com/system/resources/previews/050/511/817/non_2x/blue-yellow-and-white-running-shoe-in-motion-use-for-athletic-product-banners-sporty-sneaker-posts-and-stylish-covers-isolated-on-transparent-background-png.png",
+        "price": 11000,
+        "ratings": 4,
+        "category": ["Shoes", "Fashion", "Nike"]
+    },
+    {
+        "id": 4,
+        "productName": "Nike",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRolmIY8Y9QM4GLfvH7wEV6OqJ8poCaXRS0wg&s",
+        "ratings": 5,
+        "price": 9000,
+        "category": ["Shoes", "Fashion", "Nike"]
+    },
+    {
+        "id": 5,
+        "productName": "Air Max",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREths99VqKNB7vw8FeMSmClTBf-3-9G9MAVg&s",
+        "price": 19000,
+        "ratings": 4,
+        "category": ["Shoes", "Fashion", "Nike"]
+    }
+]
