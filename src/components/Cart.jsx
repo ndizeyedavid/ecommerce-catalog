@@ -1,20 +1,30 @@
 
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
-function Cart({ cartItems = [], onClose, onUpdateQuantity, onRemoveItem }) {
+function Cart({ cartItems = [], onClose, setCart }) {
      const [isCheckingOut, setIsCheckingOut] = useState(false);
 
      const calculateTotal = () => {
-          return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+          return cartItems.reduce((total, item) => total + item.price, 0).toLocaleString();
      };
 
      const handleCheckout = () => {
           setIsCheckingOut(true);
           // Simulate checkout process
           setTimeout(() => {
-               alert('Checkout completed!');
+               toast.success('Checkout completed!');
+               const updatedCart = [];
+               setCart(updatedCart);
+               localStorage.setItem('cart', JSON.stringify(updatedCart));
                onClose();
           }, 2000);
+     };
+
+     const onRemoveItem = (itemId) => {
+          const updatedCart = cartItems.filter((item) => item.id !== itemId);
+          setCart(updatedCart);
+          localStorage.setItem('cart', JSON.stringify(updatedCart));
      };
 
      return (
@@ -47,10 +57,10 @@ function Cart({ cartItems = [], onClose, onUpdateQuantity, onRemoveItem }) {
                          <>
                               <div className="overflow-y-auto flex-1">
                                    {cartItems.map((item) => (
-                                        <div key={item.id} className="flex border-b py-4">
+                                        <div key={item.id + Math.random()} className="flex border-b py-4">
                                              <div className="w-20 h-20 bg-gray-100 rounded-md overflow-hidden">
                                                   <img
-                                                       src={item.image}
+                                                       src={item.img}
                                                        alt={item.name}
                                                        className="w-full h-full object-cover"
                                                   />

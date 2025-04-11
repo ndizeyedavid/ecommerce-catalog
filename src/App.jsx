@@ -5,14 +5,21 @@ import Loading from "./components/Loading";
 import Header from "./components/Header";
 import FilterPanel from "./components/FilterPanel";
 import Cart from "./components/Cart";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
+
   // filters
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    categories: [],
+    priceRange: [0, 100000],
+    minRating: 0,
+  });
 
   useEffect(() => {
     Axios.get("/data/products.json").then((res) => {
@@ -24,14 +31,15 @@ function App() {
 
   return (
     <main>
+      <Toaster />
 
-      <Header />
+      <Header cart={cart} setCart={setCart} />
 
       <div className="flex gap-1">
 
         <FilterPanel onFilterChange={setFilters} />
 
-        {loading ? <Loading /> : <ProductGrid filters={filters} products={products} />}
+        {loading ? <Loading /> : <ProductGrid setCart={setCart} filters={filters} products={products} />}
       </div>
 
     </main>

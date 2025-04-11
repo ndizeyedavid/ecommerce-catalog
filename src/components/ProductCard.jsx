@@ -1,8 +1,28 @@
+import toast from "react-hot-toast";
 
-export default function ProductCard({ id, img, productName, price, ratings, category }) {
+export default function ProductCard({ id, img, productName, price, ratings, category, setCart }) {
 
-     function addToCart(id) {
-          console.log(id)
+     function addToCart() {
+          const cartItem = {
+               id: id,
+               img: img,
+               name: productName,
+               price: price,
+          }
+
+          const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+          const productExists = currentCart.some(item => item.id === id);
+
+          if (productExists) {
+               toast.error("This product is already in your cart!");
+               return;
+          }
+
+          const updatedCart = [...currentCart, cartItem];
+          localStorage.setItem("cart", JSON.stringify(updatedCart));
+          setCart(updatedCart);
+          toast.success("Product added to cart!");
      }
 
      return (
@@ -10,14 +30,14 @@ export default function ProductCard({ id, img, productName, price, ratings, cate
                <figure>
                     <img
                          src={img}
-                         className="w-full h-[240px] object-cover"
+                         className="w-full h-[240px] bg-primary object-cover"
                          alt="Shoes" />
                </figure>
                <div className="card-body space-y-3">
 
                     <div className="flex justify-between">
                          <h2 className="card-title">{productName}</h2>
-                         <div className="badge bg-primary-content text-primary px-1">{price.toLocaleString()} RWF</div>
+                         <div className="badge bg-primary-content text-primary px-2 w-fit">{price.toLocaleString()} RWF</div>
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -36,7 +56,7 @@ export default function ProductCard({ id, img, productName, price, ratings, cate
 
                     <div className="card-actions">
                          {category.map((data, index) => (
-                              <div key={index} className="badge badge-outline bg-primary-content">{data}</div>
+                              <div key={index} className="badge badge-outline bg-primary-content text-primary">{data}</div>
                          ))}
                     </div>
 

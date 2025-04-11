@@ -1,18 +1,19 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function FilterPanel({ onFilterChange }) {
      const [filters, setFilters] = useState({
           categories: [],
-          priceRange: [0, 1000],
+          priceRange: [0, 100000],
           minRating: 0,
      });
 
      const categories = [
-          { id: 'electronics', name: 'Electronics' },
-          { id: 'clothing', name: 'Clothing' },
-          { id: 'books', name: 'Books' },
-          { id: 'home', name: 'Home & Kitchen' },
+          { id: 'nike', name: 'Nike' },
+          { id: 'addiddas', name: 'Addiddas' },
+          { id: 'new balance', name: 'New Balance' },
+          { id: 'jordan', name: 'Jordan' },
+          { id: 'zoom', name: 'Zoom' },
      ];
 
      const handleCategoryChange = (categoryId) => {
@@ -34,7 +35,7 @@ function FilterPanel({ onFilterChange }) {
      const clearFilters = () => {
           const resetFilters = {
                categories: [],
-               priceRange: [0, 1000],
+               priceRange: [0, 100000],
                minRating: 0,
           };
           updateFilters(resetFilters);
@@ -48,7 +49,7 @@ function FilterPanel({ onFilterChange }) {
      };
 
      return (
-          <div className="w-[300px] border-r border-b border-black/10 h-fit p-4 flex flex-col gap-6">
+          <div className="w-[300px] border-r border-b border-primary/20 h-fit p-4 flex flex-col gap-6">
                <h2 className="text-xl font-bold">Filters</h2>
 
                {/* Category Filter */}
@@ -75,15 +76,16 @@ function FilterPanel({ onFilterChange }) {
                     <div className="flex flex-col gap-2">
                          <input
                               type="range"
-                              min="0"
-                              max="1000"
+                              min="1000"
+                              max="100000"
+                              step="1000"
                               value={filters.priceRange[1]}
                               className="range range-primary"
                               onChange={handlePriceChange}
                          />
                          <div className="flex justify-between">
-                              <span>${filters.priceRange[0]}</span>
-                              <span>${filters.priceRange[1]}</span>
+                              <span>{filters.priceRange[0]} RWF</span>
+                              <span>{filters.priceRange[1].toLocaleString()} RWF</span>
                          </div>
                     </div>
                </div>
